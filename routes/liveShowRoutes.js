@@ -3,6 +3,7 @@ const User = require("../models/userModel");
 const { v4: uuidv4 } = require("uuid");
 exports.getLiveShowDetails = (req, res) => {
   LiveShow.findOne({ roomCode: req.params.roomCode })
+    .populate("host", "userName profileImageUrl fullName")
     .then((data) => {
       return res.status(200).json(data);
     })
